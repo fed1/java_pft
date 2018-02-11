@@ -7,23 +7,27 @@ public class PointTest {
 
     @Test
     public void testPoint1() {
-        Point p = new Point(6, 8);
-        Assert.assertEquals(p.distance(), 10.0);
+        Point p = new Point(6);
+        Point p2 = new Point(8);
+        Assert.assertEquals(p.distance(p2), 10.0);
     }
     @Test
     public void testPoint2() {
-        Point p = new Point(12, 13);
-        Assert.assertNotEquals(p.distance(), 16.0);
+        Point p = new Point(12);
+        Point p2 = new Point(13);
+        Assert.assertNotEquals(p.distance(p2), 16.0);
     }
     @Test
     public void testPoint3() {
-        Point p = new Point (-5,-6);
-        Assert.assertNotEquals(p.distance(), -15.0);
+        Point p = new Point (-5);
+        Point p2 = new Point(-6);
+        Assert.assertNotEquals(p.distance(p2), -15.0);
     }
 
     @Test
     public void testPoint4() {
-        Point p = new Point (0,-1);
-        Assert.assertEquals(p.distance(), 1.0);
+        Point p = new Point (0);
+        Point p2 = new Point(-1);
+        Assert.assertEquals(p.distance(p2), 1.0);
     }
 }
