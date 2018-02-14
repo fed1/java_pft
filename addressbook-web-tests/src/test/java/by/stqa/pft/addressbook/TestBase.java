@@ -80,4 +80,17 @@ public class TestBase {
     protected void selectGroup() {
         wd.findElement(By.name("selected[]")).click();
     }
+
+    protected void returnToHomepage() {
+        wd.findElement(By.linkText("home page")).click(); // newly added contacts can be seen on the homepage
+    }
+
+
+    protected void submitContactCreation() {
+        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    }
+
+    protected void initContactCreation() {
+        wd.findElement(By.linkText("add new")).click(); // a form for adding new contscts is opened
+    }
 }
