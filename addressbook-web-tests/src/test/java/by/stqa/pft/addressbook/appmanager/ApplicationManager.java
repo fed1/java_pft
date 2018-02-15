@@ -1,7 +1,5 @@
 package by.stqa.pft.addressbook.appmanager;
 
-import by.stqa.pft.addressbook.model.ContactData;
-import by.stqa.pft.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,9 +9,11 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
-
     FirefoxDriver wd;
+
+    private SessionHelper sessionHelper;
     private GroupHelper groupHelper;
+    private NavigationHelper navigationHelper;
     private ContactHelper contactHelper;
 
     public static boolean isAlertPresent(FirefoxDriver wd) {
@@ -31,39 +31,35 @@ public class ApplicationManager {
         wd.get("http://localhost");
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
-        login("admin", "secret");
+        navigationHelper = new NavigationHelper(wd);
+        sessionHelper = new SessionHelper(wd);
+        sessionHelper.login("admin", "secret");
     }
 
-    private void login(String userName, String password) {
-        wd.get("http://localhost/addressbook/group.php");
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(userName);
-        wd.findElement(By.id("LoginForm")).click();
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-    }
+
 
     public void stop() {
         wd.quit();
     }
 
 
-
     public GroupHelper getGroupHelper() {
         return groupHelper;
     }
+
     public ContactHelper getContactHelper() {
         return contactHelper;
     }
 
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
+    }
+
     public void gotoGroupPage() {
-        groupHelper.gotoGroupPage();
+        navigationHelper.gotoGroupPage();
     }
 
     public void returnToHomepage() {
-        wd.findElement(By.linkText("home page")).click(); // newly added contacts can be seen on the homepage
+        navigationHelper.returnToHomepage();
     }
 }
