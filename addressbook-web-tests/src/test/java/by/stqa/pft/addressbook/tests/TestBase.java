@@ -1,6 +1,8 @@
 package by.stqa.pft.addressbook.tests;
 
 import by.stqa.pft.addressbook.appmanager.ApplicationManager;
+import by.stqa.pft.addressbook.model.ContactData;
+import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -17,6 +19,7 @@ public class TestBase {
     public void tearDown() {
         app.stop();
     }
+
 
 
 }
