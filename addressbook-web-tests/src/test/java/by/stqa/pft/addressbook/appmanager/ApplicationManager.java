@@ -30,6 +30,7 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost");
         groupHelper = new GroupHelper(wd);
+        contactHelper = new ContactHelper(wd);
         login("admin", "secret");
     }
 
@@ -49,9 +50,7 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public void returnToHomepage() {
-        wd.findElement(By.linkText("home page")).click(); // newly added contacts can be seen on the homepage
-    }
+
 
     public GroupHelper getGroupHelper() {
         return groupHelper;
@@ -64,5 +63,7 @@ public class ApplicationManager {
         groupHelper.gotoGroupPage();
     }
 
-
+    public void returnToHomepage() {
+        wd.findElement(By.linkText("home page")).click(); // newly added contacts can be seen on the homepage
+    }
 }
