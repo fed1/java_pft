@@ -16,6 +16,6 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void returnToHomepage() {
-        click(By.linkText("hone page")); // newly added contacts can be seen on the homepage
+        click(By.linkText("home page")); // newly added contacts can be seen on the homepage
     }
 }
