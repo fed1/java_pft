@@ -30,4 +30,13 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contactData.getContactHomePhone());
         type(By.name("email"), contactData.getContactEmail());
     }
+
+    public void initContactModification() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+        //click(By.name("edit"));
+    }
+
+    public void submitContactModification() {
+        click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+    }
 }
