@@ -3,6 +3,7 @@ package by.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -31,7 +32,11 @@ public class ApplicationManager {
            // wd = new FirefoxDriver();
             wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         } else if (browser.equals(BrowserType.CHROME)){
-            wd = new ChromeDriver();
+           ChromeOptions options = new ChromeOptions();
+            options.setBinary("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"); //C:\Program Files (x86)\Google\Chrome\Application
+          wd = new ChromeDriver(options);
+
+          //  wd = new ChromeDriver();
         } else if (browser.equals(BrowserType.IE)) {
             wd = new InternetExplorerDriver();
         }
