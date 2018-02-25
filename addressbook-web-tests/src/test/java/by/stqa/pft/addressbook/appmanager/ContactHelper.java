@@ -11,7 +11,7 @@ import org.testng.Assert;
 public class ContactHelper extends HelperBase {
 
 
-    private FirefoxDriver wd;
+   // private FirefoxDriver wd;
 
     public ContactHelper(WebDriver wd) {
 
