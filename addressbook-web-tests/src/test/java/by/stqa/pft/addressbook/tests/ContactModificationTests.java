@@ -21,6 +21,7 @@ public class ContactModificationTests extends TestBase {
         app.getNavigationHelper().returnToHomepage();
         int b = app.getContactHelper().getContactCount();
         System.out.println("Всего контактов" + b);
+        app.getContactHelper().getContactList();
 
 
 }

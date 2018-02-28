@@ -3,14 +3,35 @@ package by.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
+    private int id;
     private final String contactName;
     private final String contactLastname;
     private final String contactHomePhone;
     private final String contactEmail;
     private String group;
 
-    public ContactData(String contactName, String contactLastname, String contactHomePhone, String contactEmail, String group) {
+    public ContactData(int id, String contactName, String contactLastname, String contactHomePhone, String contactEmail, String group) {
+        this.id = 0;
         this.contactName = contactName;
+        this.contactLastname = contactLastname;
+        this.contactHomePhone = contactHomePhone;
+        this.contactEmail = contactEmail;
+        this.group = group;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+
+        return id;
+    }
+
+    public ContactData(String contactName, String contactLastname, String contactHomePhone, String contactEmail, String group) {
+        this.id = 0;
+        this.contactName = contactName;
+
         this.contactLastname = contactLastname;
         this.contactHomePhone = contactHomePhone;
         this.contactEmail = contactEmail;
