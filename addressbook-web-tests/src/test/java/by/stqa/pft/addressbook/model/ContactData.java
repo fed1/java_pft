@@ -11,7 +11,7 @@ public class ContactData {
     private String group;
 
     public ContactData(int id, String contactName, String contactLastname, String contactHomePhone, String contactEmail, String group) {
-        this.id = 0;
+        this.id = id;
         this.contactName = contactName;
         this.contactLastname = contactLastname;
         this.contactHomePhone = contactHomePhone;

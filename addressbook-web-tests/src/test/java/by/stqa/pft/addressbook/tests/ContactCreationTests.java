@@ -24,23 +24,17 @@ public class ContactCreationTests extends TestBase {
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
 
         before.sort(byId);
+        System.out.println(before.get(0).getId());
+        System.out.println(before.get(1).getId());
+        System.out.println(before.get(2).getId());
+        System.out.println(before.get(3).getId());
         after.sort(byId);
+        System.out.println(after.get(0).getId());
+        System.out.println(after.get(1).getId());
+        System.out.println(after.get(2).getId());
+        System.out.println(after.get(3).getId());
 
-      /*  class SortSpecial implements Comparator<ContactData> {
-            public int compare(ContactData a, ContactData b)
-            {
-                String name1 = a.getContactLastname();
-                String name2 = b.getContactLastname();
-                return name1.compareToIgnoreCase(name2);
-            }
-        }
-        Collections.sort(before, new SortSpecial());
-        Collections.sort(after, new SortSpecial());
-*/
        Assert.assertEquals(before, after);
-       // System.out.println(before);
-       // System.out.println(after);
-
 
     }
 
