@@ -85,11 +85,16 @@ public class ContactHelper extends HelperBase {
         System.out.println("Размер" + elements.size() );
         int i=0;
         for (WebElement element : elements) {
-            String line = element.getText();
-           // int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            String [] words = line.split("\\s");
-            ContactData contact = new ContactData(words[1], words[0], null, null, null);
-            contacts.add(contact);
+            List<WebElement> cells = element.findElements(By.tagName("td"));
+            for (WebElement cell : cells) {
+                int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+                String name = cells.get(2).getText();
+                String lastname = cells.get(1).getText();
+                ContactData contact = new ContactData(id, name, lastname, null, null, null);
+                contacts.add(contact);
+                System.out.println(id + " ," + name + " ," + lastname);
+            }
+
         }
 
         return contacts;

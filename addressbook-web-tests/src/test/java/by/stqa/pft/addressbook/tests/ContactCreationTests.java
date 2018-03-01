@@ -21,8 +21,12 @@ public class ContactCreationTests extends TestBase {
         app.getContactHelper().createContact((contact), true);
         List<ContactData> after = app.getContactHelper().getContactList();
         before.add(contact);
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
 
-        class SortSpecial implements Comparator<ContactData> {
+        before.sort(byId);
+        after.sort(byId);
+
+      /*  class SortSpecial implements Comparator<ContactData> {
             public int compare(ContactData a, ContactData b)
             {
                 String name1 = a.getContactLastname();
@@ -32,10 +36,10 @@ public class ContactCreationTests extends TestBase {
         }
         Collections.sort(before, new SortSpecial());
         Collections.sort(after, new SortSpecial());
-
+*/
        Assert.assertEquals(before, after);
-        System.out.println(before);
-        System.out.println(after);
+       // System.out.println(before);
+       // System.out.println(after);
 
 
     }
