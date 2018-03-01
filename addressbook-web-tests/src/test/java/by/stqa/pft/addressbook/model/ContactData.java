@@ -2,6 +2,8 @@ package by.stqa.pft.addressbook.model;
 
 import java.util.Objects;
 
+import static java.lang.Integer.MAX_VALUE;
+
 public class ContactData {
     private int id;
     private final String contactName;
@@ -12,6 +14,7 @@ public class ContactData {
 
     public ContactData(int id, String contactName, String contactLastname, String contactHomePhone, String contactEmail, String group) {
         this.id = id;
+       // this.id = MAX_VALUE;
         this.contactName = contactName;
         this.contactLastname = contactLastname;
         this.contactHomePhone = contactHomePhone;
@@ -29,7 +32,7 @@ public class ContactData {
     }
 
     public ContactData(String contactName, String contactLastname, String contactHomePhone, String contactEmail, String group) {
-        this.id = 0;
+        this.id = MAX_VALUE;
         this.contactName = contactName;
 
         this.contactLastname = contactLastname;

@@ -98,4 +98,11 @@ public class ContactHelper extends HelperBase {
     }
 
 
+    public void selectContact(int index) {
+        wd.findElements(By.xpath("//td[8]/a/img")).get(index).click();
+      // String text = wd.findElements(By.xpath("//td[8]/a/img")).get(index).toString();
+     // System.out.println(text);
+       // wd.findElements(By.name("selected[]")).get(index).findElement(By.name("edit")).click();
+
+    }
 }
