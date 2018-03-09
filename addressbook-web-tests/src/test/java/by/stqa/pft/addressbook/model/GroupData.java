@@ -23,14 +23,8 @@ public class GroupData {
         return this;
     }
 
-    public GroupData withId(int id) {
-        this.id = id;
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GroupData groupData = (GroupData) o;
@@ -42,6 +36,11 @@ public class GroupData {
     public int hashCode() {
 
         return Objects.hash(id, name);
+    }
+
+    public GroupData withId(int id) {
+        this.id = id;
+        return this;
     }
 
     @Override
