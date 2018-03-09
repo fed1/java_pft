@@ -5,40 +5,65 @@ import java.util.Objects;
 import static java.lang.Integer.MAX_VALUE;
 
 public class ContactData {
-    private int id;
-    private final String contactName;
-    private final String contactLastname;
-    private final String contactHomePhone;
-    private final String contactEmail;
+    private int id = Integer.MAX_VALUE;
+    private String contactName;
+    private  String contactLastname;
+    private  String contactHomePhone;
+    private String contactEmail;
     private String group;
 
-    public ContactData(int id, String contactName, String contactLastname, String contactHomePhone, String contactEmail, String group) {
-        this.id = id;
-       // this.id = MAX_VALUE;
+    public ContactData withContactName(String contactName) {
         this.contactName = contactName;
-        this.contactLastname = contactLastname;
-        this.contactHomePhone = contactHomePhone;
-        this.contactEmail = contactEmail;
-        this.group = group;
+        return this;
     }
 
-    public void setId(int id) {
+    public ContactData withContactLastname(String contactLastname) {
+        this.contactLastname = contactLastname;
+        return this;
+    }
+
+    public ContactData withContactHomePhone(String contactHomePhone) {
+        this.contactHomePhone = contactHomePhone;
+        return this;
+    }
+
+    public ContactData withContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactData that = (ContactData) o;
+        return id == that.id &&
+                Objects.equals(contactName, that.contactName) &&
+                Objects.equals(contactLastname, that.contactLastname);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, contactName, contactLastname);
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
+
+
+
+    public ContactData withId(int id) {
+
         this.id = id;
+        return this;
     }
 
     public int getId() {
 
         return id;
-    }
-
-    public ContactData(String contactName, String contactLastname, String contactHomePhone, String contactEmail, String group) {
-        this.id = MAX_VALUE;
-        this.contactName = contactName;
-
-        this.contactLastname = contactLastname;
-        this.contactHomePhone = contactHomePhone;
-        this.contactEmail = contactEmail;
-        this.group = group;
     }
 
     public String getContactName() {
@@ -63,21 +88,6 @@ public class ContactData {
                 "contactName='" + contactName + '\'' +
                 ", contactLastname='" + contactLastname + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContactData that = (ContactData) o;
-        return Objects.equals(contactName, that.contactName) &&
-                Objects.equals(contactLastname, that.contactLastname);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(contactName, contactLastname);
     }
 
     public String getGroup() {

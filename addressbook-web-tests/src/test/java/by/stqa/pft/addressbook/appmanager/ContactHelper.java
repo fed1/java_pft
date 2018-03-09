@@ -1,12 +1,11 @@
 package by.stqa.pft.addressbook.appmanager;
 
 import by.stqa.pft.addressbook.model.ContactData;
+import by.stqa.pft.addressbook.model.Contacts;
 import by.stqa.pft.addressbook.model.GroupData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
@@ -22,7 +21,7 @@ public class ContactHelper extends HelperBase {
 
         super(wd);
     }
-    public void returnToHomepage() {
+    public void homepage() {
         click(By.linkText("home"));
     }
     public void submitContactCreation() {
@@ -49,8 +48,13 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public void initContactModification(int index) {
-        wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).get(index).click();
+    public void initContactModification() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+       // wd.findElement(By.cssSelector("div[title='Edit']")).click();
+      //  wd.findElement(By.xpath("//*[@id='maintable']/tbody/tr['"+id+"']/td[8]/a/img"));
+        //wd.findElement(By.linkText("edit.php?id=" + id)).findElement(By.tagName("img src")).click();
+        //wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).get(index).click()
+        //"div[title='my']"
 
     }
 
@@ -59,50 +63,60 @@ public class ContactHelper extends HelperBase {
     }
 
     public void deleteContact() {
-       click(By.xpath("//div/div[4]/form[2]/input[2]"));
+        // click(By.xpath("//div/div[4]/form[2]/input[2]"));
+        wd.findElement(By.cssSelector("input[value='Delete']")).click();
+        wd.switchTo().alert().accept();
     }
 
-    public void createContact(ContactData contact, boolean creation) {
+    public void create(ContactData contact, boolean creation) {
         initContactCreation();
         fillContactForm(contact, creation);
-        System.out.println("zapolnili");
         submitContactCreation();
-        returnToHomepage();
+        homepage();
 
     }
-
 
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public int getContactCount(){
-        return wd.findElements(By.name("selected[]")).size();
+
+    public void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[id='"+ id + "']")).click();
+
     }
-    public List<ContactData>  getContactList() {
-        List <ContactData> contacts = new ArrayList<ContactData>();
+    public void select() {
+
+
+        click(By.name("selected[]"));
+
+
+    }
+
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List <WebElement> elements = wd.findElements(By.name("entry"));
-        System.out.println("Размер" + elements.size() );
-        int i=0;
-        for (WebElement element : elements) {
+        System.out.println("found elements: " + elements.size() );
+        for (WebElement element : elements){
             String name = element.findElements(By.tagName("td")).get(2).getText();
             String lastname = element.findElements(By.tagName("td")).get(1).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            ContactData contact = new ContactData(id, name, lastname, null, null, null);
-            contacts.add(contact);
-         //   System.out.println(id + " ," + name + " ," + lastname);
-
+            contacts.add(new ContactData().withId(id).withContactName(name).withContactLastname(lastname));
         }
-
         return contacts;
     }
+    public void delete(ContactData contact) {
+        selectContactById(contact.getId());
+        deleteContact();
+        homepage();
+        }
 
-
-    public void selectContact(int index) {
-        wd.findElements(By.xpath("//td[8]/a/img")).get(index).click();
-      // String text = wd.findElements(By.xpath("//td[8]/a/img")).get(index).toString();
-     // System.out.println(text);
-       // wd.findElements(By.name("selected[]")).get(index).findElement(By.name("edit")).click();
-
+    public void modify(ContactData contact) {
+       selectContactById(contact.getId());
+       // select();
+        initContactModification();
+        fillContactForm(contact,false);
+        submitContactModification();
+        homepage();
     }
 }

@@ -62,7 +62,7 @@ public class ApplicationManager {
         return groupHelper;
     }
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 
@@ -75,6 +75,6 @@ public class ApplicationManager {
     }
 
     public void returnToHomepage() {
-        navigationHelper.returnToHomepage();
+        navigationHelper.homepage();
     }
 }
