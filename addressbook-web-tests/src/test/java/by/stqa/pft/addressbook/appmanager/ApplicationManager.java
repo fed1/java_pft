@@ -41,7 +41,7 @@ public class ApplicationManager {
             wd = new InternetExplorerDriver();
         }
             // wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-        wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook");
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
@@ -58,7 +58,7 @@ public class ApplicationManager {
     }
 
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
@@ -66,12 +66,12 @@ public class ApplicationManager {
         return contactHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
-    public void gotoGroupPage() {
-        navigationHelper.gotoGroupPage();
+    public void groupPage() {
+        navigationHelper.groupPage();
     }
 
     public void returnToHomepage() {
