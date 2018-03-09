@@ -9,8 +9,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase {
-    @Test
-    public void testContactModification (){
+    @Test (enabled = false)
+    public void testContactModification () {
 
         app.getNavigationHelper().returnToHomepage();
         if (! app.getContactHelper().isThereAContact()){
