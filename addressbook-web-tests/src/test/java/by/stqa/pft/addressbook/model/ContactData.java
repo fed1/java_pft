@@ -18,9 +18,15 @@ public class ContactData {
     private String email1;
     private String email2;
     private String email3;
+    private String contactAddress;
 
     public ContactData withEmail1(String email1) {
         this.email1 = email1;
+        return this;
+    }
+
+    public ContactData withContactAddress(String contactAddress) {
+        this.contactAddress = contactAddress;
         return this;
     }
 
@@ -135,6 +141,10 @@ public class ContactData {
 
     public String getEmail3() {
         return email3;
+    }
+
+    public String getContactAddress() {
+        return contactAddress;
     }
 
     @Override

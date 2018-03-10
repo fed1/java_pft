@@ -108,8 +108,9 @@ public class ContactHelper extends HelperBase {
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
             String allPhones = element.findElements(By.tagName("td")).get(5).getText();
             String allEmails = element.findElements(By.tagName("td")).get(4).getText();
+            String address = element.findElements(By.tagName("td")).get(3).getText();
             contacts.add(new ContactData().withId(id).withContactName(name).withContactLastname(lastname)
-                    .withAllPhones(allPhones).withAllEmails(allEmails));
+                    .withAllPhones(allPhones).withAllEmails(allEmails).withContactAddress(address));
         }
         return contacts;
     }
@@ -138,10 +139,11 @@ public class ContactHelper extends HelperBase {
         String email1  = wd.findElement(By.name("email")).getAttribute("value");
         String email2  = wd.findElement(By.name("email2")).getAttribute("value");
         String email3  = wd.findElement(By.name("email3")).getAttribute("value");
+        String address  = wd.findElement(By.xpath(".//*[@id='content']/form[1]/textarea[1]")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withContactName(firstname).withContactLastname(lastname)
         .withContactHomePhone(homePhone).withContactMobilePhone(mobilePhone).withContactWorkPhone(workPhone)
-                .withEmail1(email1).withEmail2(email2).withEmail3(email3);
+                .withEmail1(email1).withEmail2(email2).withEmail3(email3).withContactAddress(address);
 
 
     }
