@@ -2,14 +2,12 @@ package by.stqa.pft.addressbook.appmanager;
 
 import by.stqa.pft.addressbook.model.ContactData;
 import by.stqa.pft.addressbook.model.Contacts;
-import by.stqa.pft.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -81,7 +79,7 @@ public class ContactHelper extends HelperBase {
     }
 
 
-    public void selectContactById(int id) {
+    public void editContactById(int id) {
         WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
         WebElement row = checkbox.findElement(By.xpath("./../.."));
         List <WebElement> cells = row.findElements(By.tagName("td"));
@@ -115,22 +113,20 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
     public void delete(ContactData contact) {
-        selectContactById(contact.getId());
+        editContactById(contact.getId());
         deleteContact();
         homepage();
         }
 
     public void modify(ContactData contact) {
-       selectContactById(contact.getId());
-       // select();
-        initContactModification();
+       editContactById(contact.getId());
         fillContactForm(contact,false);
         submitContactModification();
         homepage();
     }
 
     public ContactData infoFromEditForm(ContactData contact) {
-        selectContactById(contact.getId());
+        editContactById(contact.getId());
         String firstname  = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastname  = wd.findElement(By.name("lastname")).getAttribute("value");
         String homePhone  = wd.findElement(By.name("home")).getAttribute("value");
